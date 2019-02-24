@@ -17,5 +17,10 @@ namespace FailistSimulation.Models
 
         [JsonProperty("Component")]
         public string Component { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {Value} {Component}";
+        }
     }
 }

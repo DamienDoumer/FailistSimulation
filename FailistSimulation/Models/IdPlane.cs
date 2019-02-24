@@ -17,5 +17,10 @@ namespace FailistSimulation.Models
 
         [JsonProperty("Presentation and notes", NullValueHandling = NullValueHandling.Ignore)]
         public string PresentationAndNotes { get; set; }
+
+        public override string ToString()
+        {
+            return $"{CountryOrRegion} {RegistrationPrefix} {PresentationAndNotes}";
+        }
     }
 }

@@ -16,6 +16,11 @@ namespace FailistSimulation.Models
         public string Value { get; set; }
 
         [JsonProperty("Type plane")]
-        public string TypePlaneTypePlane { get; set; }
+        public string PlaneType { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {Value} {PlaneType}";
+        }
     }
 }

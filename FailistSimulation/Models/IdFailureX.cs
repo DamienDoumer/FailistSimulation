@@ -17,5 +17,10 @@ namespace FailistSimulation.Models
 
         [JsonProperty("Failure type")]
         public string FailureType { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {Value} {FailureType}";
+        }
     }
 }
