@@ -16,5 +16,25 @@ namespace FailistSimulation
         {
             InitializeComponent();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ManualSimulationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AutomaticSimulationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StopSimulationButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
