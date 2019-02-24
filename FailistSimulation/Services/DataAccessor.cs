@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using FailistSimulation.Models;
+using Newtonsoft.Json;
 
 namespace FailistSimulation.Services
 {
@@ -23,7 +24,8 @@ namespace FailistSimulation.Services
 
         public static FailistObject DeserializeData()
         {
-            return null;
+            var failistObject = JsonConvert.DeserializeObject<FailistObject>(ReadDataFile());
+            return failistObject;
         }
     }
 }
