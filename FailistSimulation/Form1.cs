@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,14 @@ namespace FailistSimulation
 
         private void ManualSimulationButton_Click(object sender, EventArgs e)
         {
+            ManualSimulationDialog manualSimulationDialog = new ManualSimulationDialog();
+            manualSimulationDialog.OptionsSelected += ManualSimulationDialog_OptionsSelected;
+            manualSimulationDialog.ShowDialog();
+        }
 
+        private void ManualSimulationDialog_OptionsSelected(List<Models.IdFailureX> arg1, Models.IdPlane arg2)
+        {
+            Debug.WriteLine("Manual Simulation selected.");
         }
 
         private void AutomaticSimulationButton_Click(object sender, EventArgs e)
