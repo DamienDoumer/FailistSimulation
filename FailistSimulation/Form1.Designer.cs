@@ -31,7 +31,7 @@
             this.SimulationEventListBox = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.SimulationStatusLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.StopSimulationButton = new System.Windows.Forms.Button();
             this.ManualSimulationButton = new System.Windows.Forms.Button();
@@ -63,7 +63,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.SimulationStatusLabel);
             this.groupBox2.Location = new System.Drawing.Point(13, 440);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(304, 87);
@@ -71,14 +71,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Simulation Status";
             // 
-            // label1
+            // SimulationStatusLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "No Simulation Going On";
+            this.SimulationStatusLabel.AutoSize = true;
+            this.SimulationStatusLabel.Location = new System.Drawing.Point(7, 31);
+            this.SimulationStatusLabel.Name = "SimulationStatusLabel";
+            this.SimulationStatusLabel.Size = new System.Drawing.Size(160, 17);
+            this.SimulationStatusLabel.TabIndex = 0;
+            this.SimulationStatusLabel.Text = "No Simulation Going On";
             // 
             // groupBox3
             // 
@@ -132,7 +132,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Failist Simulator";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -146,7 +146,7 @@
         private System.Windows.Forms.ListBox SimulationEventListBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label SimulationStatusLabel;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button StopSimulationButton;
         private System.Windows.Forms.Button ManualSimulationButton;
