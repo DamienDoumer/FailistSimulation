@@ -46,7 +46,7 @@ namespace FailistSimulation
                 MessageBox.Show("Please select at least an error and a plane to proceed.");
                 return;
             }
-
+            var items = _failistObject.IdFailureX.Where(f => SelectedErrorListBox.Items.Contains(f.ToString()));
             OptionsSelected?.Invoke(new List<IdFailureX>(_failistObject.IdFailureX.Where(f => SelectedErrorListBox.Items.Contains(f.ToString()))),
                 _failistObject.IdPlanes.Where(p => p.ToString() == comboBox2.SelectedItem.ToString()).FirstOrDefault());
             this.Close();
