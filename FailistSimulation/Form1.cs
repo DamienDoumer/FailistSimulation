@@ -37,6 +37,12 @@ namespace FailistSimulation
 
         private void ManualSimulationDialog_OptionsSelected(List<Models.IdFailureX> arg1, Models.IdPlane arg2)
         {
+            if (_simulator != null)
+            {
+                _simulator.ErrorOccured -= _simulator_ErrorOccured;
+                _simulator.SimulationFinished -= _simulator_SimulationFinished;
+            }
+
             _simulator = new Simulator(arg1, arg2, 10d, 5);
             _simulator.ErrorOccured += _simulator_ErrorOccured;
             _simulator.SimulationFinished += _simulator_SimulationFinished;
@@ -45,7 +51,16 @@ namespace FailistSimulation
 
         private void AutomaticSimulationButton_Click(object sender, EventArgs e)
         {
+            if (_simulator != null)
+            {
+                _simulator.ErrorOccured -= _simulator_ErrorOccured;
+                _simulator.SimulationFinished -= _simulator_SimulationFinished;
+            }
 
+            _simulator = new Simulator(10d, 5);
+            _simulator.ErrorOccured += _simulator_ErrorOccured;
+            _simulator.SimulationFinished += _simulator_SimulationFinished;
+            _simulator.Simulate();
         }
 
         private void StopSimulationButton_Click(object sender, EventArgs e)
