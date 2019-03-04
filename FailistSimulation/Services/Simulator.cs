@@ -41,18 +41,20 @@ namespace FailistSimulation.Services
             Thread thread;
             var failObj = DataAccessor.DeserializeData();
             var duration = Decimal.Divide(new Decimal(SecondsDuration), new Decimal(TimeFrame));
-            for (int i = 0; i < TimeFrame; i++)
-            {
+            
                 thread = new Thread(() =>
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds((int)Math.Round(duration)));
-                    int index = new Random().Next(0, FailureXes.Count);
-                    var idFailure = FailureXes[index];
-                    var idComponentFailure = failObj.IdComponentFailureX[new Random().Next(0, failObj.IdComponentFailureX.Length)];
-                    ErrorOccured?.Invoke(Plane, idFailure, PlaneType, idComponentFailure);
+                    for (int i = 0; i < TimeFrame; i++)
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds((int)Math.Round(duration)));
+                        int index = new Random().Next(0, FailureXes.Count);
+                        var idFailure = FailureXes[index];
+                        var idComponentFailure = failObj.IdComponentFailureX[new Random().Next(0, failObj.IdComponentFailureX.Length)];
+                        ErrorOccured?.Invoke(Plane, idFailure, PlaneType, idComponentFailure);
+                    }
                 });
+
                 thread.Start();
-            }
 
             SimulationFinished?.Invoke();
         }
