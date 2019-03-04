@@ -59,7 +59,7 @@ namespace FailistSimulation
 
         void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedPlane.Text = comboBox1.SelectedItem?.ToString();
+            SelectedPlane.Text = comboBox2.SelectedItem?.ToString();
         }
 
         void RemoveErrorButton_Click(object sender, EventArgs e)
