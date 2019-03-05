@@ -20,6 +20,7 @@ namespace FailistSimulation
 
         public Form1()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
         }
 
@@ -38,6 +39,22 @@ namespace FailistSimulation
         {
             if (!_isSimulationMode)
             {
+                string strDuration = DurationTextBox.Text;
+                string strInterval = TimeIntervalTextBox.Text;
+                int duration = 0;
+                int interval = 0;
+
+                if (!int.TryParse(strDuration, out duration))
+                {
+                    MessageBox.Show("Please enter a valid duration in Seconds");
+                    return;
+                }
+                if (!int.TryParse(strInterval, out interval))
+                {
+                    MessageBox.Show("Please enter a valid interval integer less than.");
+                    return;
+                }
+
                 if (_simulator != null)
                 {
                     _simulator.ErrorOccured -= _simulator_ErrorOccured;
@@ -57,13 +74,29 @@ namespace FailistSimulation
         {
             if (!_isSimulationMode)
             {
+                string strDuration = DurationTextBox.Text;
+                string strInterval = TimeIntervalTextBox.Text;
+                int duration = 0;
+                int interval = 0;
+
+                if (!int.TryParse(strDuration, out duration))
+                {
+                    MessageBox.Show("Please enter a valid duration in Seconds");
+                    return;
+                }
+                if (!int.TryParse(strInterval, out interval))
+                {
+                    MessageBox.Show("Please enter a valid interval integer less than.");
+                    return;
+                }
+
                 if (_simulator != null)
                 {
                     _simulator.ErrorOccured -= _simulator_ErrorOccured;
                     _simulator.SimulationFinished -= _simulator_SimulationFinished;
                 }
 
-                _simulator = new Simulator(10d, 5);
+                _simulator = new Simulator((double)duration, 5);
                 Simulate();
             }
             else
@@ -117,6 +150,11 @@ namespace FailistSimulation
         void _simulator_SimulationFinished()
         {
             _isSimulationMode = false;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

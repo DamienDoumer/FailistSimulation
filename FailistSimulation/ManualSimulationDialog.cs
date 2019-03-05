@@ -16,6 +16,7 @@ namespace FailistSimulation
         {
             InitializeComponent();
             _failistObject = DataAccessor.DeserializeData();
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             foreach (var item in _failistObject.IdFailureX)
             {

@@ -36,6 +36,10 @@
             this.StopSimulationButton = new System.Windows.Forms.Button();
             this.ManualSimulationButton = new System.Windows.Forms.Button();
             this.AutomaticSimulationButton = new System.Windows.Forms.Button();
+            this.DurationTextBox = new System.Windows.Forms.TextBox();
+            this.TimeIntervalTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -123,11 +127,47 @@
             this.AutomaticSimulationButton.UseVisualStyleBackColor = true;
             this.AutomaticSimulationButton.Click += new System.EventHandler(this.AutomaticSimulationButton_Click);
             // 
+            // DurationTextBox
+            // 
+            this.DurationTextBox.Location = new System.Drawing.Point(350, 468);
+            this.DurationTextBox.Name = "DurationTextBox";
+            this.DurationTextBox.Size = new System.Drawing.Size(206, 22);
+            this.DurationTextBox.TabIndex = 5;
+            // 
+            // TimeIntervalTextBox
+            // 
+            this.TimeIntervalTextBox.Location = new System.Drawing.Point(632, 468);
+            this.TimeIntervalTextBox.Name = "TimeIntervalTextBox";
+            this.TimeIntervalTextBox.Size = new System.Drawing.Size(206, 22);
+            this.TimeIntervalTextBox.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(347, 440);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Duration";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(632, 445);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Time Intervals";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 658);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.TimeIntervalTextBox);
+            this.Controls.Add(this.DurationTextBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -138,6 +178,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -151,6 +192,10 @@
         private System.Windows.Forms.Button StopSimulationButton;
         private System.Windows.Forms.Button ManualSimulationButton;
         private System.Windows.Forms.Button AutomaticSimulationButton;
+        private System.Windows.Forms.TextBox DurationTextBox;
+        private System.Windows.Forms.TextBox TimeIntervalTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
