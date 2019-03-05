@@ -16,16 +16,15 @@ namespace FailistSimulation
     {
         Simulator _simulator;
         delegate void StringArgReturningVoidDelegate(string text);
+        bool _isSimulationMode;
 
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void ManualSimulationButton_Click(object sender, EventArgs e)
@@ -37,35 +36,63 @@ namespace FailistSimulation
 
         private void ManualSimulationDialog_OptionsSelected(List<Models.IdFailureX> arg1, Models.IdPlane arg2)
         {
-            if (_simulator != null)
+            if (!_isSimulationMode)
             {
-                _simulator.ErrorOccured -= _simulator_ErrorOccured;
-                _simulator.SimulationFinished -= _simulator_SimulationFinished;
-            }
+                if (_simulator != null)
+                {
+                    _simulator.ErrorOccured -= _simulator_ErrorOccured;
+                    _simulator.SimulationFinished -= _simulator_SimulationFinished;
+                }
 
-            _simulator = new Simulator(arg1, arg2, 10d, 5);
-            _simulator.ErrorOccured += _simulator_ErrorOccured;
-            _simulator.SimulationFinished += _simulator_SimulationFinished;
-            _simulator.Simulate();
+                _simulator = new Simulator(arg1, arg2, 10d, 5);
+                Simulate();
+            }
+            else
+            {
+                MessageBox.Show("Simulation going on.");
+            }
         }
 
         private void AutomaticSimulationButton_Click(object sender, EventArgs e)
         {
-            if (_simulator != null)
+            if (!_isSimulationMode)
             {
-                _simulator.ErrorOccured -= _simulator_ErrorOccured;
-                _simulator.SimulationFinished -= _simulator_SimulationFinished;
-            }
+                if (_simulator != null)
+                {
+                    _simulator.ErrorOccured -= _simulator_ErrorOccured;
+                    _simulator.SimulationFinished -= _simulator_SimulationFinished;
+                }
 
-            _simulator = new Simulator(10d, 5);
+                _simulator = new Simulator(10d, 5);
+                Simulate();
+            }
+            else
+            {
+                MessageBox.Show("Simulation going on.");
+            }
+        }
+
+        public void Simulate()
+        {
+            if (SimulationEventListBox.Items.Count > 0)
+            {
+                SimulationEventListBox.Items.Clear();
+            }
             _simulator.ErrorOccured += _simulator_ErrorOccured;
             _simulator.SimulationFinished += _simulator_SimulationFinished;
             _simulator.Simulate();
+            _isSimulationMode = true;
+            SimulationStatusLabel.Text = "Simulation started.";
         }
 
         private void StopSimulationButton_Click(object sender, EventArgs e)
         {
-
+            if (_isSimulationMode)
+            {
+                _simulator.Stop();
+                SimulationStatusLabel.Text = "Simulation Stopped";
+                _isSimulationMode = false;
+            }
         }
 
         void _simulator_ErrorOccured(Models.IdPlane arg1, Models.IdFailureX arg2, Models.TypePlane arg3, Models.IdComponentFailureX arg4)
@@ -89,6 +116,7 @@ namespace FailistSimulation
 
         void _simulator_SimulationFinished()
         {
+            _isSimulationMode = false;
         }
     }
 }

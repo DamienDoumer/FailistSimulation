@@ -14,6 +14,7 @@ namespace FailistSimulation.Services
         public TypePlane PlaneType { get; set; }
         public event Action<IdPlane, IdFailureX, TypePlane, IdComponentFailureX> ErrorOccured;
         public event Action SimulationFinished;
+        Thread _thread;
 
         public Simulator(List<IdFailureX> idFailureXes, IdPlane idPlane, double seconds, int timeFrame)
         {
@@ -36,13 +37,17 @@ namespace FailistSimulation.Services
             FailureXes = new List<IdFailureX>(failistObject.IdFailureX);
         }
 
+        public void Stop()
+        {
+            _thread.Suspend();
+        }
+
         public void Simulate()
         {
-            Thread thread;
             var failObj = DataAccessor.DeserializeData();
             var duration = Decimal.Divide(new Decimal(SecondsDuration), new Decimal(TimeFrame));
             
-                thread = new Thread(() =>
+                _thread = new Thread(() =>
                 {
                     for (int i = 0; i < TimeFrame; i++)
                     {
@@ -54,7 +59,7 @@ namespace FailistSimulation.Services
                     }
                 });
 
-                thread.Start();
+                _thread.Start();
 
             SimulationFinished?.Invoke();
         }
