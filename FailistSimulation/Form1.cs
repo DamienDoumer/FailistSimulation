@@ -22,6 +22,8 @@ namespace FailistSimulation
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
+            TimeIntervalTextBox.Visible = false;
+            label2.Visible = false;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -61,7 +63,8 @@ namespace FailistSimulation
                     _simulator.SimulationFinished -= _simulator_SimulationFinished;
                 }
 
-                _simulator = new Simulator(arg1, arg2, 10d, 5);
+                interval = new Random().Next(1, 20);
+                _simulator = new Simulator(arg1, arg2, duration, interval);
                 Simulate();
             }
             else
@@ -75,7 +78,8 @@ namespace FailistSimulation
             if (!_isSimulationMode)
             {
                 string strDuration = DurationTextBox.Text;
-                string strInterval = TimeIntervalTextBox.Text;
+                //string strInterval = TimeIntervalTextBox.Text;
+                string strInterval = "1";
                 int duration = 0;
                 int interval = 0;
 
@@ -96,7 +100,8 @@ namespace FailistSimulation
                     _simulator.SimulationFinished -= _simulator_SimulationFinished;
                 }
 
-                _simulator = new Simulator((double)duration, 5);
+                interval = new Random().Next(1, 20);
+                _simulator = new Simulator((double)duration, interval);
                 Simulate();
             }
             else
@@ -150,6 +155,7 @@ namespace FailistSimulation
         void _simulator_SimulationFinished()
         {
             _isSimulationMode = false;
+            SimulationStatusLabel.Text = "Simulation Completed.";
         }
     }
 }

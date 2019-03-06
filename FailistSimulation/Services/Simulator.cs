@@ -69,11 +69,10 @@ namespace FailistSimulation.Services
                         var idComponentFailure = failObj.IdComponentFailureX[new Random().Next(0, failObj.IdComponentFailureX.Length)];
                         ErrorOccured?.Invoke(Plane, idFailure, PlaneType, idComponentFailure);
                     }
+                    SimulationFinished?.Invoke();
                 });
 
                 _thread.Start();
-
-            SimulationFinished?.Invoke();
         }
     }
 }
