@@ -7,6 +7,7 @@ namespace FailistSimulation.Services
 {
     public class Simulator
     {
+        private const int MAXERRORCOUNT = 10;
         public List<IdFailureX> FailureXes { get; set; }
         public IdPlane Plane { get; set; }
         public double SecondsDuration { get; set; }
@@ -53,6 +54,17 @@ namespace FailistSimulation.Services
                     {
                         Thread.Sleep(TimeSpan.FromSeconds((int)Math.Round(duration)));
                         int index = new Random().Next(0, FailureXes.Count);
+                        int boolean = new Random().Next(0, 1);
+                        if (boolean == 1 )
+                        {
+                            int numberOfErrors = new Random().Next();
+                            for (int j = 0; j == MAXERRORCOUNT; j++)
+                            {
+                                var idF = FailureXes[index];
+                                var idComp = failObj.IdComponentFailureX[new Random().Next(0, failObj.IdComponentFailureX.Length)];
+                                ErrorOccured?.Invoke(Plane, idF, PlaneType, idComp);
+                            }
+                        }
                         var idFailure = FailureXes[index];
                         var idComponentFailure = failObj.IdComponentFailureX[new Random().Next(0, failObj.IdComponentFailureX.Length)];
                         ErrorOccured?.Invoke(Plane, idFailure, PlaneType, idComponentFailure);
