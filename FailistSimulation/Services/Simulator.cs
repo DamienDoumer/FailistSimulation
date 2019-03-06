@@ -54,7 +54,7 @@ namespace FailistSimulation.Services
                     {
                         Thread.Sleep(TimeSpan.FromSeconds((int)Math.Round(duration)));
                         int index = new Random().Next(0, FailureXes.Count);
-                        int boolean = new Random().Next(0, 1);
+                        int boolean = new Random().Next(0, 2);
                         if (boolean == 1 )
                         {
                             int numberOfErrors = new Random().Next();

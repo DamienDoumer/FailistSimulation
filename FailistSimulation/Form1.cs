@@ -155,7 +155,19 @@ namespace FailistSimulation
         void _simulator_SimulationFinished()
         {
             _isSimulationMode = false;
-            SimulationStatusLabel.Text = "Simulation Completed.";
+            SimulationFinished("Simulation Completed.");
+        }
+        void SimulationFinished(string message)
+        {
+            if (SimulationStatusLabel.InvokeRequired)
+            {
+                StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(SimulationFinished);
+                this.Invoke(d, new object[] { message });
+            }
+            else
+            {
+                this.SimulationStatusLabel.Text = message;
+            }
         }
     }
 }
