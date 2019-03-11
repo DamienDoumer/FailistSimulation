@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FailistSimulation.Services;
+using System.Runtime.InteropServices;
 
 namespace FailistSimulation
 {
@@ -17,6 +18,10 @@ namespace FailistSimulation
         Simulator _simulator;
         delegate void StringArgReturningVoidDelegate(string text);
         bool _isSimulationMode;
+        private List<string> commment = new List<string> { "Comment 1", "Comment 2", "Comment 3", "Comment 4", "Comment 5" };
+
+        [DllImport("/home/damien/Desktop/Epitech/Exos/Failist/FailistSimulation/FailistSimulation/bin/Debug/libfaillist.so", EntryPoint = "error_report")]
+        static extern void error_report(string[] message);
 
         public Form1()
         {
@@ -24,6 +29,7 @@ namespace FailistSimulation
             InitializeComponent();
             TimeIntervalTextBox.Visible = false;
             label2.Visible = false;
+            SimulationEventListBox.ItemHeight = 50;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -71,6 +77,16 @@ namespace FailistSimulation
             {
                 MessageBox.Show("Simulation going on.");
             }
+        }
+
+        string[] ToStringArray(Models.IdPlane idPlane, Models.TypePlane typePlane, int nbFailures, Models.IdFailureX idFailureX, Models.IdComponentFailureX idComponentFailure)
+        {
+            Random rnd = new Random();
+            int level = rnd.Next(1, 5);
+            String comm = commment[rnd.Next(commment.Count)];
+
+            string[] str = new string[] { idPlane.ToString(), typePlane.Id, nbFailures.ToString(), idFailureX.Id, DateTime.Now.Ticks.ToString(), level.ToString(), comm.Length.ToString(), comm };
+            return str;
         }
 
         private void AutomaticSimulationButton_Click(object sender, EventArgs e)
@@ -135,6 +151,8 @@ namespace FailistSimulation
 
         void _simulator_ErrorOccured(Models.IdPlane arg1, Models.IdFailureX arg2, Models.TypePlane arg3, Models.IdComponentFailureX arg4)
         {
+            var stringArr = ToStringArray(arg1, arg3, 0, arg2, arg4);
+            error_report(stringArr);
             string message = $"Error : {arg2} \n On Component : {arg4} \n On Plane {arg1} \n Of Type {arg3}";
             AddError(message);
         }
